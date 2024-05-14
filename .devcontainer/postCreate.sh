@@ -1,0 +1,1 @@
+/home/yarma/src/0-generic-devcontainer/.devcontainer/postCreate.sh

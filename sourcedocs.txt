@@ -1,0 +1,221 @@
+./docs/notes-obsidian/Planning.md
+./docs/notes-obsidian/[October 2021.md
+./docs/notes-obsidian/Templates/area.md
+./docs/notes-obsidian/Templates/Post.md
+./docs/notes-obsidian/Templates/tips.md
+./docs/notes-obsidian/Templates/Idea.md
+./docs/notes-obsidian/Templates/0_default.md
+./docs/notes-obsidian/Templates/Person.md
+./docs/notes-obsidian/Templates/Resonance.md
+./docs/notes-obsidian/Templates/Project.md
+./docs/notes-obsidian/Templates/Meeting.md
+./docs/notes-obsidian/Templates/backlinks.md
+./docs/notes-obsidian/Chats/New Chat.md
+./docs/notes-obsidian/How_to_retrieve_tenants_information_for_a_lab.md
+./docs/notes-obsidian/E+D MER -- ES LT.md
+./docs/notes-obsidian/journal/2023-10-16.md
+./docs/notes-obsidian/journal/2023-10-18.md
+./docs/notes-obsidian/persistent 1-1 Vinod.md
+./docs/notes-obsidian/areas/YES-team.md
+./docs/notes-obsidian/How_to_find_tenants_information_for_a_lab.md
+./docs/notes-obsidian/Tasks.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-03-07-Mt-ChaosEng-Gameday-for-FHL.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-05-23-Mt-interview-Rodolfo-martinez.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-05-31-Mt-interview-Jorge Reus.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-06-03-Mt-interview-Arturo-Sanchez-Alvarez.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-06-02-Mt-Interview-My-Ho.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-03-17-Interview-Arley-D- Cervantes.md
+./docs/notes-obsidian/1-Notes/Permanent/Interviews/2022-03-07-Interview-Fernando Barajas.md
+./docs/notes-obsidian/1-Notes/Permanent/kusto - queries.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Jonathon.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Scott.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-07-22-staging-ssie-tenants.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-05-10-Mt-frontend-integration-testing.md
+./docs/notes-obsidian/1-Notes/Permanent/ES-PR Experience.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Danny.md
+./docs/notes-obsidian/1-Notes/Permanent/Kyle - Parental leave.md
+./docs/notes-obsidian/1-Notes/Permanent/yamdev-devcontainer-cli.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-10-19-mt-demo-tenant-provisioning.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-01-14-talk-From Monitoring to Observability.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Carrie.md
+./docs/notes-obsidian/1-Notes/Permanent/Torus-tips.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Shane.md
+./docs/notes-obsidian/1-Notes/Permanent/Labs-TIPS.md
+./docs/notes-obsidian/1-Notes/Permanent/ES-Dev CLI.md
+./docs/notes-obsidian/1-Notes/Permanent/Kubernetes - Tips.md
+./docs/notes-obsidian/1-Notes/Permanent/WG-Reliability.md
+./docs/notes-obsidian/1-Notes/Permanent/viva pulse (glint).md
+./docs/notes-obsidian/1-Notes/Permanent/Licenses in labs.md
+./docs/notes-obsidian/1-Notes/Permanent/Yammer features.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-05-09-Mt-Bacho deep dive.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-USA-France-Financials.md
+./docs/notes-obsidian/1-Notes/Permanent/measure team time spent on things.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-YES-Principals.md
+./docs/notes-obsidian/1-Notes/Permanent/YES-oncall-things to eliminate.md
+./docs/notes-obsidian/1-Notes/Permanent/Be a principal.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-09-29-Viva-Yammer Team Agreement.md
+./docs/notes-obsidian/1-Notes/Permanent/Minto's Pyramid Principle.md
+./docs/notes-obsidian/1-Notes/Permanent/Github and Microsoft.md
+./docs/notes-obsidian/1-Notes/Permanent/windows-tips-snipets.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Bacho.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-01-14-talk-Removing Engineering Bias in Chaos.md
+./docs/notes-obsidian/1-Notes/Permanent/Vanity-domains.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-11-29-Mt-ESLT.md
+./docs/notes-obsidian/1-Notes/Permanent/Viva Goals.md
+./docs/notes-obsidian/1-Notes/Permanent/Feature-oriented-Metrics.md
+./docs/notes-obsidian/1-Notes/Permanent/My prostate.md
+./docs/notes-obsidian/1-Notes/Permanent/peer-feedback.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Amit.md
+./docs/notes-obsidian/1-Notes/Permanent/2022-02-25-blog-From Monitoring to Observability.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Tim.md
+./docs/notes-obsidian/1-Notes/Permanent/vsts-cli-tips.md
+./docs/notes-obsidian/1-Notes/Permanent/Mt-1-1-Jose.md
+./docs/notes-obsidian/1-Notes/Permanent/Microsoft-TIPS.md
+./docs/notes-obsidian/1-Notes/Inbox/Engineering Thrive.md
+./docs/notes-obsidian/1-Notes/Inbox/Untitled Kanban.md
+./docs/notes-obsidian/1-Notes/Inbox/viva goals - feedback.md
+./docs/notes-obsidian/1-Notes/Inbox/Engage 2024.md
+./docs/notes-obsidian/1-Notes/Inbox/graphQL queries extraction from graph service.md
+./docs/notes-obsidian/1-Notes/Inbox/Testing V-team.md
+./docs/notes-obsidian/1-Notes/Inbox/Mt-ETC leadership.md
+./docs/notes-obsidian/1-Notes/Inbox/SNI.md
+./docs/notes-obsidian/1-Notes/Inbox/merlinbot.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-03-07-COSMIC release cadence.md
+./docs/notes-obsidian/1-Notes/Inbox/bookmarks-Main.md
+./docs/notes-obsidian/1-Notes/Inbox/DevTestLab - DevBox (MDB) - codespaces.md
+./docs/notes-obsidian/1-Notes/Inbox/gcc federated meetings.md
+./docs/notes-obsidian/1-Notes/Inbox/draft2.md
+./docs/notes-obsidian/1-Notes/Inbox/API-testing - failures.md
+./docs/notes-obsidian/1-Notes/Inbox/on-call.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-01-24-interview Raviteja Emjala.md
+./docs/notes-obsidian/1-Notes/Inbox/contractor.md
+./docs/notes-obsidian/1-Notes/Inbox/hiring.md
+./docs/notes-obsidian/1-Notes/Inbox/Yann Away July 2023.md
+./docs/notes-obsidian/1-Notes/Inbox/Badrinarayanan Vardarajan.md
+./docs/notes-obsidian/1-Notes/Inbox/Michael Kelley.md
+./docs/notes-obsidian/1-Notes/Inbox/Draft migration k6.md
+./docs/notes-obsidian/1-Notes/Inbox/OKR with Viva Goals.md
+./docs/notes-obsidian/1-Notes/Inbox/Jagadish Parameswaran.md
+./docs/notes-obsidian/1-Notes/Inbox/1-1-DaveBrown.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-02-01-interview-Tejinder Kaur Gill.md
+./docs/notes-obsidian/1-Notes/Inbox/draft-GPT3.5.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-01-23-Interview Jaya Sankar.md
+./docs/notes-obsidian/1-Notes/Inbox/retro Labs Auth issue.md
+./docs/notes-obsidian/1-Notes/Inbox/draft-GPT4.md
+./docs/notes-obsidian/1-Notes/Inbox/Jan-2023 thoughtworks Tech Radar.md
+./docs/notes-obsidian/1-Notes/Inbox/1ESPT.md
+./docs/notes-obsidian/1-Notes/Inbox/SAW-tips.md
+./docs/notes-obsidian/1-Notes/Inbox/api testing side effect on data.md
+./docs/notes-obsidian/1-Notes/Inbox/Dangers of AI and the End of Human Civilization.md
+./docs/notes-obsidian/1-Notes/Inbox/Todd Pliner.md
+./docs/notes-obsidian/1-Notes/Inbox/Noticeable Quarter work.md
+./docs/notes-obsidian/1-Notes/Inbox/Framework Alternatives for API testing.md
+./docs/notes-obsidian/1-Notes/Inbox/Validation community.md
+./docs/notes-obsidian/1-Notes/Inbox/chat with DEA team on labs and API-testing.md
+./docs/notes-obsidian/1-Notes/Inbox/API test crisis Jun 2023.md
+./docs/notes-obsidian/1-Notes/Inbox/Khaled Henidak.md
+./docs/notes-obsidian/1-Notes/Inbox/1MRP - 1MRX - integration.md
+./docs/notes-obsidian/1-Notes/Inbox/scenario testing coverage.md
+./docs/notes-obsidian/1-Notes/Inbox/Adalberto Bustamante Lopez.md
+./docs/notes-obsidian/1-Notes/Inbox/2023-01-03-API-testing for Answers.md
+./docs/notes-obsidian/1-Notes/Inbox/KanbanTest 1.md
+./docs/notes-obsidian/1-Notes/Inbox/latest reorg.md
+./docs/notes-obsidian/1-Notes/Inbox/1-1-Steve-Parr.md
+./docs/notes-obsidian/1-Notes/Inbox/api-testing - keep an eye on.md
+./docs/notes-obsidian/1-Notes/Inbox/Yammer - Viva Engage 2023-2024 roadmap.md
+./docs/notes-obsidian/1-Notes/Inbox/How to set priorities.md
+./docs/notes-obsidian/1-Notes/Inbox/loop team.md
+./docs/notes-obsidian/1-Notes/Inbox/new Auth workflow - partitioned cookies - 3rd party cookies.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-01-18-Interview-George-Jacob.md
+./docs/notes-obsidian/1-Notes/Inbox/jonathon Gift.md
+./docs/notes-obsidian/1-Notes/Inbox/Draft.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-01-09-Interview-PRAVEEN KUMAR KURMAPU.md
+./docs/notes-obsidian/1-Notes/Inbox/communicating better.md
+./docs/notes-obsidian/1-Notes/Inbox/GraphQL - Tips.md
+./docs/notes-obsidian/1-Notes/Inbox/ML-Insights in labs.md
+./docs/notes-obsidian/1-Notes/Inbox/Investments axis.md
+./docs/notes-obsidian/1-Notes/Inbox/Lars Wright.md
+./docs/notes-obsidian/1-Notes/Inbox/start using K6 instead of Taurus.md
+./docs/notes-obsidian/1-Notes/Inbox/2024-01-25-interview-DHRUBOJYOTI BISWAS (Dhruv).md
+./docs/notes-obsidian/1-Notes/Inbox/MTO-test-tenants-prod.md
+./docs/notes-obsidian/1-Notes/Inbox/Grafana TIPS.md
+./docs/notes-obsidian/1-Notes/Inbox/MT-1-1-Dmitry-Erikalov.md
+./docs/notes-obsidian/1-Notes/Inbox/Build your Own Copilot with Azure AI Studio.md
+./docs/notes-obsidian/1-Notes/Inbox/Mess Meeting.md
+./docs/notes-obsidian/1-Notes/Inbox/post-Verification-and-validation.md
+./docs/notes-obsidian/1-Notes/Inbox/Untitled 1.md
+./docs/notes-obsidian/1-Notes/Inbox/codespaces at Yammer.md
+./docs/notes-obsidian/1-Notes/Inbox/Cloudmine.md
+./docs/notes-obsidian/1-Notes/Inbox/MTO.md
+./docs/notes-obsidian/1-Notes/Inbox/Use ODSP tenant management tools.md
+./docs/notes-obsidian/1-Notes/Inbox/2023-12-20-Interview-Anil-Kumar.md
+./docs/notes-obsidian/1-Notes/Inbox/API testing telemetry.md
+./docs/notes-obsidian/1-Notes/Inbox/QnA in Labs.md
+./docs/notes-obsidian/1-Notes/Inbox/How Your Beliefs Shape Reality.md
+./docs/notes-obsidian/1-Notes/Inbox/Feature ownership.md
+./docs/notes-obsidian/1-Notes/Inbox/Yammer - Viva Engage compared to others.md
+./docs/notes-obsidian/1-Notes/Inbox/scenario testing in COSMIC GCC.md
+./docs/notes-obsidian/1-Notes/Inbox/Paly with K6 with Scott.B.md
+./docs/notes-obsidian/1-Notes/Inbox/First Party App process with git.md
+./docs/notes-obsidian/1-Notes/Inbox/2023-12-22 interview Kamil Ercan (Jon) Turkarslan.md
+./docs/notes-obsidian/1-Notes/Inbox/Untitled.md
+./docs/notes-obsidian/1-Notes/Inbox/FHL Ideas.md
+./docs/notes-obsidian/1-Notes/Inbox/Promo - level 66.md
+./docs/notes-obsidian/1-Notes/Inbox/Josh Zimmerman.md
+./docs/notes-obsidian/1-Notes/Inbox/YES build logs in kusto and geneva alerts.md
+./docs/notes-obsidian/1-Notes/Inbox/Jackson Woods - 1st party aaps.md
+./docs/notes-obsidian/1-Notes/Inbox/Tuesdays Meetings.md
+./docs/notes-obsidian/1-Notes/Inbox/Bridgit Murtaugh.md
+./docs/notes-obsidian/1-Notes/Inbox/MSFT-Networking.md
+./docs/notes-obsidian/1-Notes/Inbox/Derek Shaw.md
+./docs/notes-obsidian/1-Notes/Inbox/hermetic system testing.md
+./docs/notes-obsidian/1-Notes/Inbox/Samuele Carpineti.md
+./docs/notes-obsidian/1-Notes/Inbox/Admin and Elevation.md
+./docs/notes-obsidian/1-Notes/Inbox/Failure analysis.md
+./docs/notes-obsidian/1-Notes/Inbox/Magnus Hedlund.md
+./docs/notes-obsidian/1-Notes/Inbox/Generate data in cosmic.md
+./docs/notes-obsidian/1-Notes/Inbox/Scott Blackwell.md
+./docs/notes-obsidian/1-Notes/Inbox/Ideas to mature for YES.md
+./docs/notes-obsidian/Untitled.md
+./docs/notes-obsidian/4-Projects/Reliability Winter 2023.md
+./docs/notes-obsidian/4-Projects/api-testing Viva Engage.md
+./docs/notes-obsidian/4-Projects/tenant management.md
+./docs/notes-obsidian/4-Projects/2023-Q1-API testing.md
+./docs/notes-obsidian/4-Projects/UI-integration-testing.md
+./docs/notes-obsidian/4-Projects/Help graph.md
+./docs/notes-obsidian/4-Projects/AMA api-testing.md
+./docs/notes-obsidian/4-Projects/E+D  ES Leadership.md
+./docs/notes-obsidian/4-Projects/2022-Q4 API Testing.md
+./docs/notes-obsidian/3-References/Projects.md
+./docs/notes-obsidian/3-References/This week.md
+./docs/notes-obsidian/3-References/Weeklies.md
+./docs/notes-obsidian/3-References/Posts/0-Posts.md
+./docs/notes-obsidian/3-References/Posts/2022-02-10-How I feel about chaos engineering.md
+./docs/notes-obsidian/3-References/Areas/E+D Validation.md
+./docs/notes-obsidian/3-References/Areas/reliability.md
+./docs/notes-obsidian/3-References/Areas/E+D.md
+./docs/notes-obsidian/3-References/Areas/projects-incubation.md
+./docs/notes-obsidian/3-References/Areas/validation.md
+./docs/notes-obsidian/3-References/Areas/chaos-engineering.md
+./docs/notes-obsidian/3-References/Areas/Areas.md
+./docs/notes-obsidian/3-References/Areas/devcontainer.md
+./docs/notes-obsidian/3-References/Areas/feature-engineering.md
+./docs/notes-obsidian/3-References/Areas/work-better.md
+./docs/notes-obsidian/3-References/Areas/tech-radar.md
+./docs/notes-obsidian/3-References/Areas/AI.md
+./docs/notes-obsidian/3-References/Areas/finance.md
+./docs/notes-obsidian/3-References/Areas/3D printing.md
+./docs/notes-obsidian/3-References/Areas/quality.md
+./docs/notes-obsidian/3-References/Areas/labs.md
+./docs/notes-obsidian/3-References/Areas/leadership.md
+./docs/notes-obsidian/3-References/Areas/api-testing.md
+./docs/notes-obsidian/3-References/Areas/medical-health.md
+./docs/notes-obsidian/3-References/Books/Bk-Staff Engineer - W.Larson.md
+./docs/notes-obsidian/3-References/Books/0-Books.md
+./docs/notes-obsidian/3-References/Conferences-talks/champion mindset.md
+./docs/notes-obsidian/3-References/Conferences-talks/0-Conferences-talks.md
+./docs/notes-obsidian/3-References/Conferences-talks/Chaos Carnival 2022.md
+./docs/notes-obsidian/3-References/Meetings.md
+./docs/notes-obsidian/3-References/People/0-People.md
+./docs/notes-obsidian/3-References/Home.md
+./docs/notes-obsidian/Great Freeze.md
