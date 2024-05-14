@@ -163,3 +163,4 @@ cython_debug/
 conversations/*
 docs/*
 vectordb-stores/*
+ragyva.code-workspace
