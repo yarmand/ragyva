@@ -164,3 +164,5 @@ conversations/*
 docs/*
 vectordb-stores/*
 ragyva.code-workspace
+bun.lockb
+node_modules
