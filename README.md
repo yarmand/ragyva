@@ -33,6 +33,9 @@ ollama pull phi3:instruct
 ```
 docker compose up -d chromadb
 ```
+choma DB will run on http://localhost:8000
+
+
 ## import notes
 - put some md files in the `docs` folder
 - generate `sourcedocs.txt`
