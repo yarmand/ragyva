@@ -1,6 +1,9 @@
 # ragyva
 my personal take on RAG to manage my personal notes
 
+__disclaimer__: Kudos to @technovengalist for [their rag tutorial](https://github.com/technovangelist/videoprojects/tree/main/2024-04-04-build-rag-with-python) that I used to bootsrtap this repo.
+
+
 ## install and requirements
 ### devcontainer
 lets use the devcontainer, it will install everything and will serve as base for final distribution.
