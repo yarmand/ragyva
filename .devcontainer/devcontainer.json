@@ -13,6 +13,7 @@
   "containerUser": "${env:USER}",
   "postCreateCommand": "/workspaces/*/.devcontainer/postCreate.sh",
   "containerEnv": {
+    "OLLAMA_HOST": "http://host.docker.internal:11434",
   },
   "mounts": [
 		{
