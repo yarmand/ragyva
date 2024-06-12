@@ -1,1 +1,44 @@
-/home/yarma/src/0-generic-devcontainer/.devcontainer/devcontainer.json
+{
+  "name": "${env:PWD}",
+  "dockerFile": "Dockerfile",
+  "build": {
+    "args": {
+      "USERNAME": "${env:USER}"
+    }
+  },
+  "privileged": true,
+  "capAdd": ["NET_RAW", "NET_ADMIN"],
+  "runArgs": ["--network=host"],
+  "remoteUser": "${env:USER}",
+  "containerUser": "${env:USER}",
+  "postCreateCommand": "/workspaces/*/.devcontainer/postCreate.sh",
+  "containerEnv": {
+  },
+  "mounts": [
+		{
+      "type": "bind",
+      "source": "${env:HOME}",
+      "target": "/home/${env:USER}",
+    },
+	  {
+      "type": "bind",
+      "source": "/var/run/docker.sock",
+      "target": "/var/run/docker.sock"
+    },
+  ],
+
+  "features": {},
+  "overrideFeatureInstallOrder": [],
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.autopep8"
+      ]
+    }
+  },
+}
+
