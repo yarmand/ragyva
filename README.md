@@ -10,7 +10,7 @@ lets use the devcontainer, it will install everything and will serve as base for
 
 start it with VSCode or run
 ```
-devcontainer --workspace-folder $(pwd)
+devcontainer up --workspace-folder $(pwd)
 ```
 
 ### ollama
