@@ -17,9 +17,17 @@ devcontainer --workspace-folder $(pwd)
 run [ollama](https://ollama.com/) on your machine.
 
 ### models
-Make sure you have the models listed in config.ini. so for nomic-embed-text, run `ollama pull nomic-embed-text`. Update the config to show whatever models you want to use.
+Make sure you have the models listed in config.ini. so for `nomic-embed-text`
+```
+ollama pull nomic-embed-text
+```
 
-A good small model for chat is phi3:instruct
+Update the config to show whatever models you want to use.
+A good small model for chat is `phi3:instruct`
+```
+ollama pull phi3:instruct
+```
+
 
 ### chromaDB
 ```
