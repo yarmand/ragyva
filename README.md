@@ -36,7 +36,7 @@ docker compose up -d chromadb
 ## import notes
 - put some md files in the `docs` folder
 - generate `sourcedocs.txt`
-    `find ./docs -t f -name '*.md' >sourcedocs.txt`
+    `find ./docs -name '*.md' >sourcedocs.txt`
 - Import the docs: 
     `python3 import.py`
 
