@@ -1,1 +1,5 @@
-/home/yarma/src/0-generic-devcontainer/.devcontainer/postCreate.sh
+#!/bin/bash
+
+# python libs
+pip install -r requirements.txt
+
