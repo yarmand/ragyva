@@ -37,17 +37,17 @@ choma DB will run on http://localhost:8000
 
 
 ## import notes
-- put some md files in the `docs` folder
-- generate `sourcedocs.txt`
-    `find ./docs -name '*.md' >sourcedocs.txt`
-- Import the docs: 
-    `python3 import.py`
+```
+find ./docs -name '*.md' | import.py
+```
 
-## use notes
-- Perform a search: 
-    `python3 search.py <yoursearch>`
-- chat with notes
-    `python3 chat.py`
+You can specify the collection name with `--collection-name`
+(see details with `import.py -h`)
+
+## chat with notes
+```
+chat.py
+```
 
 # TODO
 ## improve import
