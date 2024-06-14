@@ -41,8 +41,13 @@ choma DB will run on http://localhost:8000
 find ./docs -name '*.md' | import.py
 ```
 
+You can specify the collection name with `--collection-name`
+(see details with `import.py -h`)
+
 ## chat with notes
-    `chat.py`
+```
+chat.py
+```
 
 # TODO
 ## improve import
