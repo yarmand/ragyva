@@ -37,16 +37,12 @@ choma DB will run on http://localhost:8000
 
 
 ## import notes
-### from a folder
 ```
 find ./docs -name '*.md' | import.py
 ```
 
-## use notes
-- Perform a search: 
-    `python3 search.py <yoursearch>`
-- chat with notes
-    `python3 chat.py`
+## chat with notes
+    `chat.py`
 
 # TODO
 ## improve import
