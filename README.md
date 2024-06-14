@@ -37,11 +37,10 @@ choma DB will run on http://localhost:8000
 
 
 ## import notes
-- put some md files in the `docs` folder
-- generate `sourcedocs.txt`
-    `find ./docs -name '*.md' >sourcedocs.txt`
-- Import the docs: 
-    `python3 import.py`
+### from a folder
+```
+find ./docs -name '*.md' | import.py
+```
 
 ## use notes
 - Perform a search: 

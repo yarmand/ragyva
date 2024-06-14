@@ -4,7 +4,7 @@ from utilities import getconfig
 embedmodel = getconfig()["embedmodel"]
 mainmodel = getconfig()["mainmodel"]
 chroma = chromadb.HttpClient(host="localhost", port=8000)
-collection = chroma.get_or_create_collection("buildragwithpython")
+collection = chroma.get_or_create_collection(getconfig()["chroma_collection"])
 
 query = " ".join(sys.argv[1:])
 queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']
