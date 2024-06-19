@@ -1,6 +1,6 @@
 {
   "name": "ragyva",
-  "dockerFile": "Dockerfile",
+  "dockerFile": "../Dockerfile",
   "build": {
     "args": {
       "USERNAME": "codespace"
