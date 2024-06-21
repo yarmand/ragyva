@@ -1,5 +1,5 @@
 {
-  "name": "${env:PWD}",
+  "name": "ragyva-laptop",
   "dockerFile": "Dockerfile",
   "build": {
     "args": {

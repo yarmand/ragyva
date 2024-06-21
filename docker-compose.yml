@@ -36,7 +36,22 @@ services:
     networks:
       - net
 
+  ollama:
+    image: ollama/ollama
+    command: serve
+    volumes:
+      - models:/models
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_MODELS="/models"
+      - OLLAMA_KEEP_ALIVE="10m"
+      - OLLAMA_PORT=11434
+
+
 volumes:
   chroma-data:
+    driver: local
+  models:
     driver: local
 
