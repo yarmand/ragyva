@@ -1,5 +1,5 @@
 {
-  "name": "ragyva",
+  "name": "ragyva-codespace",
   "dockerFile": "../Dockerfile",
   "build": {
     "args": {
