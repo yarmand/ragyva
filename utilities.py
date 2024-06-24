@@ -56,9 +56,9 @@ def readtext(path):
   return text
 
 config = False
-def getconfig():
+def getconfig(section, key):
   global config
   if config == False:
     config = configparser.ConfigParser()
     config.read('config.ini')
-  return dict(config.items("main"))
+  return dict(config.items("main"))[key]
