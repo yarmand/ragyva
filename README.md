@@ -78,7 +78,7 @@ chat.py
   - significant meta-data
   - references from note to notes
 
-## improve retreival
+## improve retrieval
 
 - return full note instead of chuncks as an option
 - reuturn full paragragh instead of chunk
