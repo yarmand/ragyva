@@ -62,6 +62,7 @@ chat.py
 
 ## improve import
 
+- only import files that changes since last embedding cycle
 - find the right balance of chunk size
 - add significant meta-data
   - note / file the chunk is coming from
