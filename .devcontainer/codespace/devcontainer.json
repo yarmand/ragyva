@@ -1,0 +1,30 @@
+{
+  "name": "ragyva-codespace",
+  "dockerFile": "../Dockerfile",
+  "build": {
+    "args": {
+      "USERNAME": "codespace"
+    }
+  },
+  "remoteUser": "codespace",
+  "containerUser": "codespace",
+  "postCreateCommand": "/workspaces/*/.devcontainer/postCreate.sh",
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+  },
+  "overrideFeatureInstallOrder": [],
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.autopep8"
+      ]
+    }
+  },
+}
+

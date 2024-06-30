@@ -18,7 +18,14 @@ devcontainer up --workspace-folder $(pwd)
 
 ### ollama
 
+Altertanive 1:
 run [ollama](https://ollama.com/) on your machine.
+
+Alternative 2:
+run Ollamma in docker-compose
+```
+docker compose up -d ollama
+```
 
 ### models
 
