@@ -29,8 +29,6 @@ with sys.stdin as f:
     filename = filename.replace(' \n', '')
     filename = filename.replace('%0A', '')
     # artificial limit to prevent large files from being imported
-    if os.path.getsize(filename) > 4096:
-      continue
     import_file(filename, embedmodel, collection)
     
 print("\n---Total--- %s seconds ---" % (time.time() - starttime))
