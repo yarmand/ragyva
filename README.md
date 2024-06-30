@@ -62,8 +62,8 @@ chat.py
 
 ## improve import
 
-- only import files that changes since last embedding cycle
-- find the right balance of chunk size
+- ~~only import files that changes since last embedding cycle~~ => store import time as matadatas
+- ~~find the right balance of chunk size~~ => use markdown langchain markdown splitter
 - add significant meta-data
   - note / file the chunk is coming from
   - current title

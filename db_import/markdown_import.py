@@ -1,21 +1,21 @@
 from langchain.text_splitter import MarkdownTextSplitter
-import ollama, time
+import ollama, time, os
 
 def import_file(filename, embedmodel, collection):
   text = ""
   print(f"-- {filename} --")
 
   # # retreive existing document
-  # existing_doc = False
-  # docs = collection.query(query_texts=[filename], where={ "source": filename })
-  # if len(docs) > 0:
-  #   existing_doc = docs["ids"][0]
-  # # skip if document did not change
-  # if existing_doc:
-  #   last_change = os.path.getmtime(filename)
-  #   if last_change > docs["import_time"][0]:
-  #     print("Skipping import, document did not change")
-  #     return
+  existing_doc = False
+  docs = collection.get(include=["metadatas"], where={ "source": filename })
+  if len(docs['ids']) > 0:
+    existing_doc = docs["ids"][0]
+  # skip if document did not change
+  if existing_doc:
+    last_change = os.path.getmtime(filename)
+    if last_change < docs["metadatas"][0]["import_time"]:
+      print("no change, skipping")
+      return
 
   starttime = time.time()
   with open(filename, 'rb') as f:
@@ -28,9 +28,17 @@ def import_file(filename, embedmodel, collection):
     # print(f"{filename}[{index}]: {chunk}")
     embed = ollama.embeddings(model=embedmodel, prompt=chunk)['embedding']
     print(".", end="", flush=True)
-    # if existing_doc:
-    #   collection.update(ids=[existing_doc], embeddings=[embed], documents=[chunk], metadatas={"source": filename, "import_time": time.time()})
-    # else:
-    collection.add([filename+str(index)], [embed], documents=[chunk], metadatas={"source": filename, "import_time": time.time()})
+    metadatas = {"source": filename, "import_time": starttime}
+    if existing_doc:
+      collection.update(ids=[existing_doc], 
+                        embeddings=[embed], 
+                        documents=[chunk], 
+                        metadatas=[metadatas])
+    else:
+      collection.add(ids=[filename+str(index)], 
+                    embeddings=[embed], 
+                    documents=[chunk], 
+                    metadatas=[metadatas]
+                    )
   print(" < %s seconds >" % (time.time() - starttime))
   
