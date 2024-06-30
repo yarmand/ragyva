@@ -14,13 +14,13 @@ YELLOW = '\033[93m'
 NEON_GREEN = '\033[92m'
 RESET_COLOR = '\033[0m'
 
-embedmodel = getconfig()["embedmodel"]
-mainmodel = getconfig()["mainmodel"]
-chroma = chromadb.HttpClient(host=getconfig()["chroma_host"], port=getconfig()["chroma_port"])
-collection = chroma.get_or_create_collection(getconfig()["chroma_collection"])
+embedmodel = getconfig("main", "embedmodel")
+mainmodel = getconfig("main", "mainmodel")
+chroma = chromadb.HttpClient(host=getconfig("main", "chroma_host"), port=getconfig("main","chroma_port"))
+collection = chroma.get_or_create_collection(getconfig("main", "chroma_collection"))
 
 ### create conversation dir
-conversationsDir = getconfig()["conversations_dir"]
+conversationsDir = getconfig("main", "conversations_dir")
 # Check if the directory already exists
 if not os.path.exists(conversationsDir):
     # If not, create the directory
@@ -34,7 +34,7 @@ def saveConversation(history):
       json.dump(history, f)
 
 conversation_history = []
-system_message = "You are a helpful assistant that is an expert at extracting the most useful information from a given text. Also bring in extra relevant infromation to the user query from outside the given context."
+system_message = getconfig("chat", "prompt_system")
 while True:
   query = input(YELLOW + "Query about your documents (or type 'quit' to exit)\n>>> " + RESET_COLOR)
   if query.lower() == 'quit':
