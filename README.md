@@ -87,6 +87,8 @@ chat.py
 
 ## improve retrieval
 
+- print path of note retreived
+- retreive chunk before and after the return by vector DB
 - return full note instead of chuncks as an option
 - optimize model temperature on retreival filter
 - add layer to filter returned data and eliminate not relevant
