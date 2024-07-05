@@ -85,6 +85,11 @@ chat.py
   - significant meta-data
   - references from note to notes
 
+## improve chat
+- Every chat interaction should not trigger a retrieval. When initial query is done, following interactions do not
+  necessarily need more data.
+- Analyse the prompt to determine if a retrieval is necessary or not.
+
 ## improve retrieval
 
 - ~~print path of note retreived~~

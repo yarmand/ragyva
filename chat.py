@@ -5,7 +5,7 @@ import ollama, sys, chromadb
 import os
 from datetime import datetime
 from utilities import getconfig
-from retrieval.search_db import search_db
+from retrieval.retrieve import retrieve
 
 
 # ANSI escape codes for colors
@@ -43,7 +43,7 @@ while True:
     saveConversation(conversation_history)
     break
     
-  docs = search_db(query=query, embedmodel=embedmodel, collection=collection)
+  docs = retrieve(query=query, embedmodel=embedmodel, collection=collection)
   modelquery = f"{query} - Answer that question using the following text as a resource: {docs}"
 
   conversation_history.append({"role": "user", "content": modelquery})
