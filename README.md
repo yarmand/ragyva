@@ -67,6 +67,8 @@ chat.py
 
 # TODO
 
+- look into graphRAG: https://github.com/microsoft/graphrag
+
 ## improve import
 
 - ~~only import files that changes since last embedding cycle~~ => store import time as matadatas
