@@ -10,6 +10,10 @@ RUN --mount=type=cache,target=/var/cache/apt \
   # extensions needs those
   ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev
 
+RUN sudo curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v2.5.0/gcm-linux_amd64.2.5.0.deb && \
+  sudo apt install -y  ./gcm-linux_amd64.*.deb && \
+  sudo rm gcm-linux_amd64.*.deb
+
 # docker client
 RUN apt-get install -y ca-certificates curl && \
     install -m 0755 -d /etc/apt/keyrings && \

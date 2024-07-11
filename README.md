@@ -67,18 +67,19 @@ chat.py
 
 # TODO
 
+- look into graphRAG: https://github.com/microsoft/graphrag
+
 ## improve import
 
 - ~~only import files that changes since last embedding cycle~~ => store import time as matadatas
 - ~~find the right balance of chunk size~~ => use markdown langchain markdown splitter
+- ~~user relative path for notes~~
 - add significant meta-data
   - note / file the chunk is coming from
-  - current title
-  - significant objects founf in the chunk
+  - significant objects found in the chunk
     - dates
     - people
     - tags
-- split using titles
 - Embed Images
   - describe images
   - extract keywords from diagram
@@ -86,12 +87,18 @@ chat.py
   - significant meta-data
   - references from note to notes
 
+## improve chat
+- Every chat interaction should not trigger a retrieval. When initial query is done, following interactions do not
+  necessarily need more data.
+- Analyse the prompt to determine if a retrieval is necessary or not.
+
 ## improve retrieval
 
+- ~~print path of note retreived~~
+- retreive chunk before and after the return by vector DB
 - return full note instead of chuncks as an option
-- reuturn full paragragh instead of chunk
+- optimize model temperature on retreival filter
 - add layer to filter returned data and eliminate not relevant
-- iptimize model temperature on retreival filter
 - Analyse prompt to distinguish content questions from dataset question (ex: how many documents with ...)
 
 ## improve generation

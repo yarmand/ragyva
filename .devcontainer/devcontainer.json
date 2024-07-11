@@ -7,8 +7,6 @@
     }
   },
   "privileged": true,
-  "capAdd": ["NET_RAW", "NET_ADMIN"],
-  "runArgs": ["--network=host"],
   "remoteUser": "${env:USER}",
   "containerUser": "${env:USER}",
   "postCreateCommand": "/workspaces/*/.devcontainer/postCreate.sh",

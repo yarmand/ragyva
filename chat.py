@@ -5,6 +5,7 @@ import ollama, sys, chromadb
 import os
 from datetime import datetime
 from utilities import getconfig
+from retrieval.retrieve import retrieve
 
 
 # ANSI escape codes for colors
@@ -14,8 +15,9 @@ YELLOW = '\033[93m'
 NEON_GREEN = '\033[92m'
 RESET_COLOR = '\033[0m'
 
-embedmodel = getconfig("main", "embedmodel")
 mainmodel = getconfig("main", "mainmodel")
+embedmodel = getconfig("main", "embedmodel")
+
 chroma = chromadb.HttpClient(host=getconfig("main", "chroma_host"), port=getconfig("main","chroma_port"))
 collection = chroma.get_or_create_collection(getconfig("main", "chroma_collection"))
 
@@ -41,9 +43,7 @@ while True:
     saveConversation(conversation_history)
     break
     
-  queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']
-  relevantdocs = collection.query(query_embeddings=[queryembed], n_results=5)["documents"][0]
-  docs = "\n\n".join(relevantdocs)
+  docs = retrieve(query=query, embedmodel=embedmodel, collection=collection)
   modelquery = f"{query} - Answer that question using the following text as a resource: {docs}"
 
   conversation_history.append({"role": "user", "content": modelquery})
