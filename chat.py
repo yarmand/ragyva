@@ -22,7 +22,7 @@ chroma = chromadb.HttpClient(host=getconfig("main", "chroma_host"), port=getconf
 collection = chroma.get_or_create_collection(getconfig("main", "chroma_collection"))
 
 ### create conversation dir
-conversationsDir = getconfig("main", "conversations_dir")
+conversationsDir = getconfig("chat", "conversations_dir")
 # Check if the directory already exists
 if not os.path.exists(conversationsDir):
     # If not, create the directory
