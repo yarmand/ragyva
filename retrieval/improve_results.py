@@ -1,4 +1,4 @@
 
 
-def improve_results(db_results, query, embedmodel, collection):
+def improve_results(db_results, query, embedmodel, table):
     return db_results
