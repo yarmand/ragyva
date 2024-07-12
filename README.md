@@ -42,14 +42,6 @@ A good small model for chat is `phi3:instruct`
 ollama pull phi3:instruct
 ```
 
-### chromaDB
-
-```
-docker compose up -d chromadb
-```
-
-choma DB will run on <http://localhost:8000>
-
 ## import notes
 
 ```

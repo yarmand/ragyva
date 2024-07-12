@@ -1,15 +1,14 @@
 import ollama
 from utilities import getconfig
 
-def search_db(query, embedmodel, collection):
+def search_db(query, embedmodel, table):
   queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']
-  db_results = collection.query(query_embeddings=[queryembed], n_results=int(getconfig("retrieval", "nb_db_results")))
+  db_results = table.search(queryembed).limit(int(getconfig("retrieval", "nb_db_results"))).to_pandas()
   results = []
-  for i in range(len(db_results["ids"][0])):
+  for i in range(len(db_results["id"])):
     entry = {
-      "id": db_results["ids"][0][i],
-      "document": db_results["documents"][0][i],
-      "metadata": db_results["metadatas"][0][i]
+      "id": db_results["id"][i],
+      "document": db_results["text"][i],
     }
     results.append(entry)
   print(f"results: {results}")

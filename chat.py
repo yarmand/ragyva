@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-import ollama, sys, chromadb
+import ollama, lancedb
 import os
 from datetime import datetime
 from utilities import getconfig
@@ -18,8 +18,8 @@ RESET_COLOR = '\033[0m'
 mainmodel = getconfig("main", "mainmodel")
 embedmodel = getconfig("main", "embedmodel")
 
-chroma = chromadb.HttpClient(host=getconfig("main", "chroma_host"), port=getconfig("main","chroma_port"))
-collection = chroma.get_or_create_collection(getconfig("main", "chroma_collection"))
+db = lancedb.connect(getconfig("lancedb","data_file"))
+doc_table = db.open_table(getconfig("lancedb", "doc_table"))
 
 ### create conversation dir
 conversationsDir = getconfig("chat", "conversations_dir")
@@ -43,7 +43,7 @@ while True:
     saveConversation(conversation_history)
     break
     
-  docs = retrieve(query=query, embedmodel=embedmodel, collection=collection)
+  docs = retrieve(query=query, embedmodel=embedmodel, table=doc_table)
   modelquery = f"{query} - Answer that question using the following text as a resource: {docs}"
 
   conversation_history.append({"role": "user", "content": modelquery})

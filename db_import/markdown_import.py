@@ -1,20 +1,22 @@
 from langchain.text_splitter import MarkdownTextSplitter
 import ollama, time, os
+from db_import.doc_model import DocModel
 
-def import_file(path, root_path, model, db_collection):
+
+def import_file(path, root_path, model, table):
   text = ""
   relpath = os.path.relpath(path, root_path)
   print(f"-- {relpath} --")
 
   # # retreive existing document
   existing_doc = False
-  docs = db_collection.get(include=["metadatas"], where={ "source": path })
-  if len(docs['ids']) > 0:
-    existing_doc = docs["ids"][0]
+  docs = table.search().where(f"source =  '{path}'", prefilter=True).to_pandas()
+  if len(docs['id']) > 0:
+    existing_doc = docs["id"][0]
   # skip if document did not change
   if existing_doc:
     last_change = os.path.getmtime(path)
-    if last_change < docs["metadatas"][0]["import_time"]:
+    if last_change < docs["import_time"][0]:
       print("no change, skipping")
       return
 
@@ -31,17 +33,17 @@ def import_file(path, root_path, model, db_collection):
     embed = ollama.embeddings(model=model, prompt=chunk)['embedding']
     print(".", end="", flush=True)
 
-    metadatas = {"source": relpath, "import_time": starttime, "chunk_index": index, "nb_chunks": nb_chunks}
+    data = DocModel(
+      vector= embed,
+      text=chunk,
+      id=f"{relpath}_{index}",
+      source=relpath,
+      import_time=starttime,
+      chunk_index=index,
+      nb_chunks=nb_chunks
+    )
     if existing_doc:
-      db_collection.update(ids=[existing_doc], 
-                        embeddings=[embed], 
-                        documents=[chunk], 
-                        metadatas=[metadatas])
+      table.update(where=f"id = {data.id}", values=data)
     else:
-      db_collection.add(ids=[relpath+str(index)], 
-                    embeddings=[embed], 
-                    documents=[chunk], 
-                    metadatas=[metadatas]
-                    )
+      table.add([data])
   print(" < %s seconds >" % (time.time() - starttime))
-  
