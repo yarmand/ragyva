@@ -1,8 +1,7 @@
 import configparser
 
-DEFAULT_CONFIG_FILE = "'config.ini'"
+DEFAULT_CONFIG_FILE = 'config.ini'
 
-global config_file
 config_file = DEFAULT_CONFIG_FILE
 
 def set_config_file(file):
@@ -16,6 +15,7 @@ def set_default_config():
 config = False
 def getconfig(section, key):
   global config
+  global config_file
   if config == False:
     config = configparser.ConfigParser()
     config.read(config_file)
