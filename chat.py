@@ -4,7 +4,7 @@ import json
 import ollama, lancedb
 import os
 from datetime import datetime
-from utilities import getconfig
+from config import getconfig
 from retrieval.retrieve import retrieve
 
 

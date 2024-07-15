@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from utilities import getconfig
+from config import getconfig
 from db_import.markdown_import import import_file
 from db_import.doc_model import DocModel
 import ollama, time
