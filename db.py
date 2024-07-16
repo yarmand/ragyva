@@ -4,7 +4,7 @@ from db_import.doc_model import DocModel
 from config import getconfig
 
 def get_db():
-  lancedb.connect(getconfig("lancedb","data_file"))
+  return lancedb.connect(getconfig("lancedb","data_file"))
 
 def get_table(db=get_db()):
   return db.open_table(getconfig("lancedb", "doc_table"))
