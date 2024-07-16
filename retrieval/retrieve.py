@@ -1,4 +1,4 @@
-from utilities import getconfig
+from config import getconfig
 from retrieval.search_db import search_db
 from retrieval.improve_results import improve_results
 

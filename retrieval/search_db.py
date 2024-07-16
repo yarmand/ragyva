@@ -1,5 +1,5 @@
 import ollama
-from utilities import getconfig
+from config import getconfig
 
 def search_db(query, embedmodel, table):
   queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']

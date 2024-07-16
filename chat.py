@@ -4,8 +4,9 @@ import json
 import ollama, lancedb
 import os
 from datetime import datetime
-from utilities import getconfig
+from config import getconfig
 from retrieval.retrieve import retrieve
+from db import get_table
 
 
 # ANSI escape codes for colors
@@ -18,8 +19,7 @@ RESET_COLOR = '\033[0m'
 mainmodel = getconfig("main", "mainmodel")
 embedmodel = getconfig("main", "embedmodel")
 
-db = lancedb.connect(getconfig("lancedb","data_file"))
-doc_table = db.open_table(getconfig("lancedb", "doc_table"))
+doc_table = get_table()
 
 ### create conversation dir
 conversationsDir = getconfig("chat", "conversations_dir")

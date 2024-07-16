@@ -6,12 +6,14 @@
       "USERNAME": "${env:USER}"
     }
   },
+  "capAdd": ["NET_RAW", "NET_ADMIN"],
+  "runArgs": ["--network=host"],
   "privileged": true,
   "remoteUser": "${env:USER}",
   "containerUser": "${env:USER}",
   "postCreateCommand": "/workspaces/*/.devcontainer/postCreate.sh",
   "containerEnv": {
-    "OLLAMA_HOST": "http://host.docker.internal:11434",
+    "OLLAMA_HOST": "http://localhost:11434",
   },
   "mounts": [
 		{
