@@ -1,5 +1,6 @@
 import ollama
 from config import getconfig
+import sys
 
 def search_db(query, embedmodel, table):
   queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']
@@ -11,5 +12,5 @@ def search_db(query, embedmodel, table):
       "document": db_results["text"][i],
     }
     results.append(entry)
-  print(f"results: {results}")
+  print(f"results: {results}", file=sys.stderr)
   return results

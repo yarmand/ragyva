@@ -1,12 +1,13 @@
 from config import getconfig
 from retrieval.search_db import search_db
 from retrieval.improve_results import improve_results
+import sys
 
 def retrieve(query, embedmodel, table):
   results = search_db(query=query, embedmodel=embedmodel, table=table)
-  print(f"notes returned:")
+  print(f"notes returned:", file=sys.stderr)
   for entry in results:
-    print(f"- {entry['id']}")
+    print(f"- {entry['id']}", file=sys.stderr)
   return build_context(db_results=results, query=query, embedmodel=embedmodel, table=table)
 
 def build_context(db_results, query, embedmodel, table):
