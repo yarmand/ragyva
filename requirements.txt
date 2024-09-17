@@ -6,3 +6,4 @@ python_magic==0.4.27
 Requests==2.31.0
 lancedb
 pandas
+nltk
