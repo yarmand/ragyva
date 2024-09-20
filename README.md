@@ -2,7 +2,7 @@
 
 my personal take on RAG to manage my personal notes
 
-__disclaimer__: Kudos to @technovangelist for [their rag tutorial](https://github.com/technovangelist/videoprojects/tree/main/2024-04-04-build-rag-with-python) that I used to bootsrtap this repo.
+I manage my notes in VSCode and started on a [syster repo to implement a VScode extension](https://github.com/yarmand/ragyva-vscode) that leverage ragyva.
 
 ## install and requirements
 
@@ -23,6 +23,7 @@ run [ollama](https://ollama.com/) on your machine.
 
 Alternative 2:
 run Ollamma in docker-compose
+
 ```
 docker compose up -d ollama
 ```
@@ -48,7 +49,6 @@ ollama pull phi3:instruct
 find ./docs -name '*.md' | import.py
 ```
 
-You can specify the collection name with `--collection-name`
 (see details with `import.py -h`)
 
 ## chat with notes
@@ -59,7 +59,7 @@ chat.py
 
 # TODO
 
-- look into graphRAG: https://github.com/microsoft/graphrag
+- implement communities from graphRAG: <https://github.com/microsoft/graphrag>
 
 ## improve import
 
@@ -67,19 +67,21 @@ chat.py
 - ~~find the right balance of chunk size~~ => use markdown langchain markdown splitter
 - ~~user relative path for notes~~
 - add significant meta-data
-  - note / file the chunk is coming from
+  - ~~note / file the chunk is coming from~~
   - significant objects found in the chunk
     - dates
     - people
-    - tags
+    - ~~tags~~
 - Embed Images
   - describe images
   - extract keywords from diagram
 - graphDB associated with notes
   - significant meta-data
-  - references from note to notes
+  - references from note to notes (wiki links)
+  - link the grapRAG communities
 
 ## improve chat
+
 - Every chat interaction should not trigger a retrieval. When initial query is done, following interactions do not
   necessarily need more data.
 - Analyse the prompt to determine if a retrieval is necessary or not.
