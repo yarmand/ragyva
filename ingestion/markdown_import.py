@@ -1,6 +1,7 @@
 from langchain.text_splitter import MarkdownTextSplitter
 import ollama, time, os
 from models import DocModel
+from ingestion.tags import extract_tags_from_filename, extract_tags_from_text
 import sys
 
 
@@ -25,6 +26,7 @@ def import_file(path, root_path, model, table):
   doc_tags += extract_tags_from_filename(path)
   for index, document in enumerate(documents):
     chunk = document.page_content
+    chunk_tags = extract_tags_from_text(chunk)
     # print(f"{relpath}[{index}]: {chunk}", file=sys.stderr)
     embed = ollama.embeddings(model=model, prompt=chunk)['embedding']
     print(".", end="", flush=True, file=sys.stderr)
@@ -41,9 +43,24 @@ def import_file(path, root_path, model, table):
       nb_chunks=nb_chunks,
       links=[],
       doc_tags=doc_tags,
-      chunk_tags=[],
+      chunk_tags=chunk_tags,
     )
     table.add([data])
+
+  # Print data nicely to stderr
+  print("\nDocument Data:", file=sys.stderr)
+  print(f"ID: {data.id}", file=sys.stderr)
+  print(f"Text: {data.text[:100]}...", file=sys.stderr)  # Print first 100 characters of the text
+  print(f"Vector: {data.vector[:5]}...", file=sys.stderr)  # Print first 5 elements of the vector
+  print(f"Source Root: {data.source_root}", file=sys.stderr)
+  print(f"Source Relative Path: {data.source_relative_path}", file=sys.stderr)
+  print(f"Source Full Path: {data.source_fullpath}", file=sys.stderr)
+  print(f"Import Time: {data.import_time}", file=sys.stderr)
+  print(f"Chunk Index: {data.chunk_index}", file=sys.stderr)
+  print(f"Number of Chunks: {data.nb_chunks}", file=sys.stderr)
+  print(f"Links: {data.links}", file=sys.stderr)
+  print(f"Document Tags: {data.doc_tags}", file=sys.stderr)
+  print(f"Chunk Tags: {data.chunk_tags}", file=sys.stderr)
 
   # timing log
   import_time=(time.time() - starttime)
@@ -55,7 +72,7 @@ def import_file(path, root_path, model, table):
     "import_time": import_time,
   }
 
-def skip_this_file(path, relpath, table)
+def skip_this_file(path, relpath, table):
   # # retreive existing document
   existing_doc = False
   docs = table.search().where(f"source_relative_path =  '{relpath}'", prefilter=True).to_pandas()

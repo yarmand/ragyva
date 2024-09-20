@@ -1,4 +1,13 @@
 from lancedb.pydantic import LanceModel, Vector
+from enum import Enum
+
+class TableNames:
+  DOC_MODEL = "doc_model"
+  TAG_MODEL = "tag_model"
+  PERSON_MODEL = "person_model"
+  COMMUNITY_MODEL = "community_model"
+  CHAT = "chat"
+
 
 class DocModel(LanceModel):
   vector: Vector(768)

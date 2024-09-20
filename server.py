@@ -4,10 +4,12 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from retrieval.retrieve import retrieve
 from db import get_table, get_or_create_table
-from models import Chat
+from models import Chat, TableNames
 from ingestion.markdown_import import import_file
-from config import getconfig
+from config import getconfig, set_config_file, DEFAULT_CONFIG_FILE
 import ollama
+import argparse
+
 
 # ANSI escape codes for colors
 PINK = '\033[95m'
@@ -45,8 +47,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     # TODO: should be optional payload params
     embedmodel = getconfig("main", "embedmodel")
-    collection_name = getconfig("lancedb", "doc_table")
-    delete_collection = False
 
     print(f"{YELLOW}==IMPORT=={RESET_COLOR}")
 
@@ -54,7 +54,7 @@ class RequestHandler(BaseHTTPRequestHandler):
       path=path, 
       root_path=doc_root, 
       model=embedmodel, 
-      table=get_or_create_table(table_name=collection_name, delete_table=delete_collection)
+      table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=False)
     )
 
 
@@ -88,10 +88,10 @@ class RequestHandler(BaseHTTPRequestHandler):
     print(f" mainModel:{mainModel}")
 
     # retreieve significant docs
-    docs = retrieve(query, embedmodel=embedModel, table=get_table())
+    docs = retrieve(query, embedmodel=embedModel, table=get_table(TableNames.DOC_MODEL))
     # get the conversation
     system_message = getconfig("chat", "prompt_system")
-    chats_table = get_or_create_table(table_name="chats", schema=Chat.to_arrow_schema())
+    chats_table = get_or_create_table(table_name=TableNames.CHAT_MODEL, schema=Chat.to_arrow_schema())
     chats = chats_table.search().where(f"id = '{conversationID}'", prefilter=True).to_pandas()
     chat_messages = []
     if len(chats['id']) == 0:
@@ -140,4 +140,9 @@ def run(server_class=HTTPServer, handler_class=RequestHandler, port=8824):
   httpd.serve_forever()
 
 if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--config', default=DEFAULT_CONFIG_FILE, help='config file to use')
+  args = parser.parse_args()
+  config_file = args.config
+  set_config_file(config_file)
   run()
