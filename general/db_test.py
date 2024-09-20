@@ -1,5 +1,5 @@
-from db import get_or_create_table
-from config import set_config_file, getconfig
+from general.db import get_or_create_table
+from general.config import set_config_file, getconfig
 
 class mockDB:
   created_table="no-table-created"

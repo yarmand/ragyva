@@ -3,10 +3,10 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from retrieval.retrieve import retrieve
-from db import get_table, get_or_create_table
-from models import Chat, TableNames
+from general.db import get_table, get_or_create_table
+from general.models import Chat, TableNames
 from ingestion.markdown_import import import_file
-from config import getconfig, set_config_file, DEFAULT_CONFIG_FILE
+from general.config import getconfig, set_config_file, DEFAULT_CONFIG_FILE
 import ollama
 import argparse
 

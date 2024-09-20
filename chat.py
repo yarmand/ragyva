@@ -4,9 +4,9 @@ import json
 import ollama, lancedb
 import os
 from datetime import datetime
-from config import getconfig
+from general.config import getconfig
 from retrieval.retrieve import retrieve
-from db import get_table
+from general.db import get_table
 
 
 # ANSI escape codes for colors

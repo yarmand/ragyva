@@ -1,5 +1,5 @@
 import ollama
-from config import getconfig
+from general.config import getconfig
 import sys
 
 def search_db(query, embedmodel, table):

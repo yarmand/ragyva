@@ -1,7 +1,7 @@
 import lancedb
 import os
-from models import DocModel, TableNames
-from config import getconfig
+from general.models import DocModel, TableNames
+from general.config import getconfig
 
 def get_db():
   return lancedb.connect(getconfig("lancedb","data_dir"))

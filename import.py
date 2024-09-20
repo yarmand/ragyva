@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-from config import getconfig, set_config_file,DEFAULT_CONFIG_FILE
+from general.config import getconfig, set_config_file,DEFAULT_CONFIG_FILE
 from ingestion.markdown_import import import_file
 import time
 import sys
 import argparse
-from db import get_or_create_table
-from models import TableNames
+from general.db import get_or_create_table
+from general.models import TableNames
 
 def import_a_file(doc_root, filename, delete_collection):
   embedmodel = getconfig("main", "embedmodel")
