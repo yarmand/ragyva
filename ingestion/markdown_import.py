@@ -1,6 +1,6 @@
 from langchain.text_splitter import MarkdownTextSplitter
 import ollama, time, os
-from models import DocModel
+from general.models import DocModel
 from ingestion.tags import extract_tags_from_filename, extract_tags_from_text
 import sys
 
