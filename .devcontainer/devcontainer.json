@@ -21,6 +21,9 @@
     },
   ],
 
+  "appPort": [ 8824 ], // publish the port at docker on the host
+  "forwardPorts": [ 8824 ], // forward the port for vscode UI machine
+
   "features": {
 		// "ghcr.io/devcontainers/features/azure-cli:1": {},
   },
