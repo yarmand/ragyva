@@ -6,7 +6,7 @@ class TableNames:
   TAG_MODEL = "tag_model"
   PERSON_MODEL = "person_model"
   COMMUNITY_MODEL = "community_model"
-  CHAT = "chat"
+  CHAT_MODEL = "chat"
 
 
 class DocModel(LanceModel):
