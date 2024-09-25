@@ -116,7 +116,7 @@ def handle_stream(self):
       path=path, 
       root_path=doc_root, 
       model=embedmodel, 
-      table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=False)
+      table=get_or_create_table(table_name=TableNames.CHUNK_MODEL, delete_table=False)
     )
 
 

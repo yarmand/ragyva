@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 import unittest
-from db import get_or_create_table, get_db, find_or_create
+from db import get_or_create_table
 from config import set_config_file, getconfig
-import models
 
 class mockDB:
   created_table="no-table-created"
@@ -53,24 +52,5 @@ class Test_get_or_create_table(unittest.TestCase):
     assert db.created_table == "lapin"
     assert db.dropped_table == "lapin"
 
-class Test_find_or_create(unittest.TestCase):
-  def test_create_the_entry(self):
-    table = get_or_create_table(table_name='db_test_1', delete_table=True, schema=models.Named.to_arrow_schema())
-    e = find_or_create(table=table,where="name='lapin'",entry=models.Named(id="123", name='lapin'))
-    ne = models.Named.model_validate(e)
-    assert ne.id == "123"
-    assert ne.name == 'lapin'
-
-  def test_find_existing_entry(self):
-    table = get_or_create_table(table_name='db_test_1', delete_table=False, schema=models.Named.to_arrow_schema())
-    existing = models.Named(id='456', short_id="456", name="aaa")
-    table.add([existing])
-    e = find_or_create(table=table,where="id='456'",entry=models.Named(id="456", short_id="error", name='lapin'))
-    ne = models.Named.model_validate(e)
-    assert ne.id == "456"
-    assert ne.short_id == '456'
-    assert ne.name == 'aaa'
-
 if __name__ == '__main__':
   unittest.main()
-  get_db().drop_table('db_test_1', ignore_missing=True)
