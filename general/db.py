@@ -1,5 +1,5 @@
 import lancedb
-import os
+import sys
 import models
 from config import getconfig
 
@@ -17,7 +17,7 @@ def get_or_create_table(table_name, delete_table=False, db=get_db(), schema=mode
   try:
     doc_table = get_table(db=db, tablename=table_name)
   except Exception as e:
-    print(f"Error occurred: {e}. Creating table {table_name}.")
+    print(f"{e}. Creating table {table_name}.")
     doc_table = db.create_table(table_name, schema=schema)
   return doc_table
 
@@ -33,9 +33,13 @@ def find_or_create(table,where, entry):
     pandas.Series: The first matching record as a pandas Series, or the newly created record.
   """
 
-  tags = table.search().where(where).to_list()
-  if tags.empty:
-    print(f"create {table} entry: {entry}", file=sys.stderr)
-    table.add(entry)
-    tags = table.search().where().to_list()
-  tags[0] if tags else None
+  l = table.search().where(where).to_list()
+  if len(l) == 0:
+    print(f"create {table.name} entry: {entry}", file=sys.stderr)
+    table.add([entry])
+    l = table.search().where(where).to_list()
+  if len(l) > 0: 
+    return l[0] 
+  else: 
+    raise ValueError(f"cannot retrieve entry {entry} in table {table.name} after its creation")
+
