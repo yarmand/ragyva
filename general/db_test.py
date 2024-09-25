@@ -14,6 +14,8 @@ class mockDB:
     self.tables = names
 
   def open_table(self, name):
+    if name not in self.tables:
+      raise ValueError(f"Table '{name}' does not exist.")
     self.opened_table = name
 
   def drop_table(self, name, ignore_missing):
@@ -29,12 +31,12 @@ class mockDB:
 class Test_get_or_create_table(unittest.TestCase):
   def test_create_the_table(self):
     db = mockDB([])
-    get_or_create_table("lapin", False, db)
+    get_or_create_table(table_name="lapin", delete_table=False, db=db)
     assert db.created_table == "lapin"
 
   def test_get_existing_table(self):
     db = mockDB(['lapin'])
-    get_or_create_table("lapin", False, db)
+    get_or_create_table(table_name="lapin", delete_table=False, db=db)
     assert db.created_table == "no-table-created"
     assert db.opened_table == "lapin"
 
