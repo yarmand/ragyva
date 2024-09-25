@@ -9,14 +9,12 @@ class Community(Named):
   level: str = ""
   """Community level."""
 
-  entity_ids: list[str] | None = None
+  entity_ids: list[str] = []
   """List of entity IDs related to the community (optional)."""
 
-  relationship_ids: list[str] | None = None
+  relationship_ids: list[str] = []
   """List of relationship IDs related to the community (optional)."""
 
-  covariate_ids: dict[str, list[str]] | None = None
-  """Dictionary of different types of covariates related to the community (optional), e.g. claims"""
-
-  attributes: dict[str, Any] | None = None
+  attributes_keys: list[str] = []
+  attributes_values: list[str] = []
   """A dictionary of additional attributes associated with the community (optional). To be included in the search prompt."""

@@ -6,7 +6,7 @@ TABLE_DOCUMENTS = "documents"
 class Document(Named):
   """A protocol for a document in the system."""
   
-  fullpath: str | None = None
+  fullpath: str
   """The file of hte document if the document comes from a file"""
   root: str
   """Root path where all the documents are"""
@@ -18,20 +18,21 @@ class Document(Named):
   text_unit_ids: list[str]
   """list of text units in the document."""
 
-  tag_ids: list[str]
+  tag_ids: list[str] = []
   """Tags defined in the document meta-data section, at the top."""
 
   raw_content: str = ""
   """The raw text content of the document."""
 
-  summary: str | None = None
+  summary: str = ""
   """Summary of the document (optional)."""
 
-  summary_embedding: list[float] | None = None
+  summary_embedding: list[float] = []
   """The semantic embedding for the document summary (optional)."""
 
-  raw_content_embedding: list[float] | None = None
+  raw_content_embedding: list[float] = []
   """The semantic embedding for the document raw content (optional)."""
 
-  attributes: dict[str, Any] | None = None
+  attributes_keys: list[str] = []
+  attributes_values: list[str] = []
   """A dictionary of structured attributes such as author, etc (optional)."""

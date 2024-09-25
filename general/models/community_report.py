@@ -16,14 +16,15 @@ class CommunityReport(Named):
   full_content: str = ""
   """Full content of the report."""
 
-  rank: float | None = 1.0
+  rank: float = 1.0
   """Rank of the report, used for sorting (optional). Higher means more important"""
 
-  summary_embedding: list[float] | None = None
+  summary_embedding: list[float] = []
   """The semantic (i.e. text) embedding of the report summary (optional)."""
 
-  full_content_embedding: list[float] | None = None
+  full_content_embedding: list[float] = []
   """The semantic (i.e. text) embedding of the full report content (optional)."""
 
-  attributes: dict[str, Any] | None = None
+  attributes_keys: list[str] = []
+  attributes_values: list[str] = []
   """A dictionary of additional attributes associated with the report (optional)."""

@@ -6,5 +6,5 @@ from .identified import Identified
 class Named(Identified):
   """A protocol for an item with a name/title."""
 
-  title: str
+  name: str = ""
   """The name/title of the item."""

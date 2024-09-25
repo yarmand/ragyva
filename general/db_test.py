@@ -56,20 +56,20 @@ class Test_get_or_create_table(unittest.TestCase):
 class Test_find_or_create(unittest.TestCase):
   def test_create_the_entry(self):
     table = get_or_create_table(table_name='db_test_1', delete_table=True, schema=models.Named.to_arrow_schema())
-    e = find_or_create(table=table,where="title='lapin'",entry=models.Named(id="123", short_id="123", title='lapin'))
+    e = find_or_create(table=table,where="name='lapin'",entry=models.Named(id="123", name='lapin'))
     ne = models.Named.model_validate(e)
     assert ne.id == "123"
-    assert ne.title == 'lapin'
+    assert ne.name == 'lapin'
 
   def test_find_existing_entry(self):
     table = get_or_create_table(table_name='db_test_1', delete_table=False, schema=models.Named.to_arrow_schema())
-    existing = models.Named(id='456', short_id="456", title="aaa")
+    existing = models.Named(id='456', short_id="456", name="aaa")
     table.add([existing])
-    e = find_or_create(table=table,where="id='456'",entry=models.Named(id="456", short_id="error", title='lapin'))
+    e = find_or_create(table=table,where="id='456'",entry=models.Named(id="456", short_id="error", name='lapin'))
     ne = models.Named.model_validate(e)
     assert ne.id == "456"
     assert ne.short_id == '456'
-    assert ne.title == 'aaa'
+    assert ne.name == 'aaa'
 
 if __name__ == '__main__':
   unittest.main()

@@ -6,5 +6,5 @@ class Identified(LanceModel):
   id: str
   """The ID of the item."""
 
-  short_id: str | None
+  short_id: str = ""
   """Human readable ID used to refer to this object in prompts or texts displayed to users, such as in a report text (optional)."""
