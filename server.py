@@ -54,7 +54,7 @@ class RequestHandler(BaseHTTPRequestHandler):
       path=path, 
       root_path=doc_root, 
       model=embedmodel, 
-      table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=False)
+      table=get_or_create_table(table_name=TableNames.CHUNK_MODEL, delete_table=False)
     )
 
 
@@ -88,7 +88,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     print(f" mainModel:{mainModel}")
 
     # retreieve significant docs
-    docs = retrieve(query, embedmodel=embedModel, table=get_table(tablename=TableNames.DOC_MODEL))
+    docs = retrieve(query, embedmodel=embedModel, table=get_table(tablename=TableNames.CHUNK_MODEL))
     # get the conversation
     system_message = getconfig("chat", "prompt_system")
     chats_table = get_or_create_table(table_name=TableNames.CHAT_MODEL, schema=Chat.to_arrow_schema())

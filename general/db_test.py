@@ -1,5 +1,8 @@
-from general.db import get_or_create_table
-from general.config import set_config_file, getconfig
+#!/usr/bin/env python3
+
+import unittest
+from db import get_or_create_table
+from config import set_config_file, getconfig
 
 class mockDB:
   created_table="no-table-created"
@@ -23,7 +26,7 @@ class mockDB:
   def table_names(self):
     return self.tables
 
-class Test_get_or_create_table():
+class Test_get_or_create_table(unittest.TestCase):
   def test_create_the_table(self):
     db = mockDB([])
     get_or_create_table("lapin", False, db)
@@ -46,3 +49,6 @@ class Test_get_or_create_table():
     get_or_create_table(table_name="lapin", delete_table=True, db=db)
     assert db.created_table == "lapin"
     assert db.dropped_table == "lapin"
+
+if __name__ == '__main__':
+  unittest.main()

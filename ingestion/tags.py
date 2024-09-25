@@ -1,7 +1,7 @@
 import os
 import re
-
-
+import sys
+from general.models import Tag
 
 # extract part of the filename within '.' as tag
 # example:
@@ -21,3 +21,4 @@ def extract_tags_from_filename(path):
 def extract_tags_from_text(text):
   tags = re.findall(r'#([\w-]+)', text)
   return tags
+

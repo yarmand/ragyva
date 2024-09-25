@@ -4,7 +4,7 @@ import sys
 
 def search_db(query, embedmodel, table):
   queryembed = ollama.embeddings(model=embedmodel, prompt=query)['embedding']
-  db_results = table.search(queryembed).limit(int(getconfig("retrieval", "nb_db_results"))).to_pandas()
+  db_results = table.search(queryembed, field="embedding").limit(int(getconfig("retrieval", "nb_db_results"))).to_pandas()
   results = []
   for i in range(len(db_results["id"])):
     entry = {

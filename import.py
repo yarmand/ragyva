@@ -14,7 +14,7 @@ def import_a_file(doc_root, filename, delete_collection):
     path=filename, 
     root_path=doc_root, 
     model=embedmodel, 
-    table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=delete_collection)
+    table=get_or_create_table(table_name=TableNames.CHUNK_MODEL, delete_table=delete_collection)
   )
   print(result)
 
