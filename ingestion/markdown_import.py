@@ -22,11 +22,13 @@ def import_file(path, root_path, model, table):
   documents = splitter.create_documents([text])
   nb_chunks = len(documents)
   print(f"with {nb_chunks} chunks ", file=sys.stderr)
-  doc_tags = []
-  doc_tags += extract_tags_from_filename(path)
+  doc_tags_names = []
+  doc_tags_names += extract_tags_from_filename(path)
+  doc_tags_names += extract_tags_from_header(path)
+
   for index, document in enumerate(documents):
     chunk = document.page_content
-    chunk_tags = extract_tags_from_text(chunk)
+    chunk_tags_names = extract_tags_from_text(chunk)
     # print(f"{relpath}[{index}]: {chunk}", file=sys.stderr)
     embed = ollama.embeddings(model=model, prompt=chunk)['embedding']
     print(".", end="", flush=True, file=sys.stderr)

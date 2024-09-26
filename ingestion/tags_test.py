@@ -2,6 +2,8 @@
 
 import unittest
 from tags import extract_tags_from_filename, extract_tags_from_text
+from tags import extract_tags_from_headers
+import os
 
 class TestExtractTagsFromFilename(unittest.TestCase):
   def test_extract_tags(self):
@@ -48,6 +50,59 @@ class TestExtractTagsFromFilename(unittest.TestCase):
     text = ""
     expected_tags = []
     self.assertEqual(extract_tags_from_text(text), expected_tags)
+
+class TestExtractTagsFromHeaders(unittest.TestCase):
+  def test_extract_tags_from_headers(self):
+    path = "test_file.md"
+    with open(path, 'w') as file:
+      file.write("---\n")
+      file.write("abstract: some description\n")
+      file.write("tags: #foo #bar\n")
+      file.write("---\n")
+      file.write("Content of the file\n")
+    expected_tags = ["foo", "bar"]
+    self.assertEqual(extract_tags_from_headers(path), expected_tags)
+    os.remove(path)
+
+  def test_extract_tags_from_headers_no_tags(self):
+    path = "test_file.md"
+    with open(path, 'w') as file:
+      file.write("---\n")
+      file.write("abstract: some description\n")
+      file.write("---\n")
+      file.write("Content of the file\n")
+    expected_tags = []
+    self.assertEqual(extract_tags_from_headers(path), expected_tags)
+    os.remove(path)
+
+  def test_extract_tags_from_headers_no_header(self):
+    path = "test_file.md"
+    with open(path, 'w') as file:
+      file.write("Content of the file\n")
+    expected_tags = []
+    self.assertEqual(extract_tags_from_headers(path), expected_tags)
+    os.remove(path)
+
+  def test_extract_tags_from_headers_multiple_tags_lines(self):
+    path = "test_file.md"
+    with open(path, 'w') as file:
+      file.write("---\n")
+      file.write("abstract: some description\n")
+      file.write("tags: #foo #bar\n")
+      file.write("tags: #baz\n")
+      file.write("---\n")
+      file.write("Content of the file\n")
+    expected_tags = ["foo", "bar", "baz"]
+    self.assertEqual(extract_tags_from_headers(path), expected_tags)
+    os.remove(path)
+
+  def test_extract_tags_from_headers_empty_file(self):
+    path = "test_file.md"
+    with open(path, 'w') as file:
+      pass
+    expected_tags = []
+    self.assertEqual(extract_tags_from_headers(path), expected_tags)
+    os.remove(path)
 
 if __name__ == '__main__':
   unittest.main()
