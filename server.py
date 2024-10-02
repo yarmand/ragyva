@@ -139,7 +139,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     chats_table.add([chat])
 
     # return the full resposne
-    response = {"response": fullResponse}
+    response = {"conversationID": conversationID,"response": fullResponse}
     self.send_response(200)
     self.send_header('Content-Type', 'application/json')
     self.end_headers()
