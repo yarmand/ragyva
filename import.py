@@ -16,7 +16,7 @@ def import_a_file(doc_root, filename, delete_collection):
     model=embedmodel, 
     table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=delete_collection)
   )
-  print(result)
+  print((result), file=sys.stderr)
 
 def import_from_stdin(doc_root, delete_collection):
   starttime = time.time()
@@ -45,5 +45,5 @@ if __name__ == "__main__":
     print(f"Import a single file: root:{doc_root}, file:{filename}", file=sys.stderr)
     import_a_file(doc_root, filename, delete_collection)
   else:
-    print("Import filesnames from stdin stdin", file=sys.stderr)
+    print("Import filenames from stdin stdin", file=sys.stderr)
     import_from_stdin(doc_root, delete_collection)

@@ -9,6 +9,8 @@ from ingestion.markdown_import import import_file
 from general.config import getconfig, set_config_file, DEFAULT_CONFIG_FILE
 import ollama
 import argparse
+import time
+import sys
 
 
 # ANSI escape codes for colors
@@ -48,7 +50,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     # TODO: should be optional payload params
     embedmodel = getconfig("main", "embedmodel")
 
-    print(f"{YELLOW}==IMPORT=={RESET_COLOR}")
+    print(f"{YELLOW}==IMPORT=={RESET_COLOR}", file=sys.stderr)
 
     result = import_file(
       path=path, 
@@ -76,16 +78,26 @@ class RequestHandler(BaseHTTPRequestHandler):
     mainModel = params.get('mainModel')
     conversationID = params.get('conversationID')
 
-    if not query or not embedModel or not mainModel or not conversationID:
+    if not embedModel:
+      embedModel = getconfig(section='main',key='embedmodel')
+
+    if not mainModel:
+      mainModel = getconfig(section='main',key='mainmodel')
+
+    if not conversationID:
+      conversationID = str(int(time.time()))
+
+    if not query:
       self.send_response(400)
       self.end_headers()
-      self.wfile.write(b'{"error": "Query or tags parameter is missing"}')
+      self.wfile.write(b'{"error": "query parameter is missing"}')
       return
 
-    print(f"{YELLOW}==RETRIEVE=={RESET_COLOR}")
-    print(f" query:{query}")
-    print(f" embedModel:{embedModel}")
-    print(f" mainModel:{mainModel}")
+    print(f"{YELLOW}==RETRIEVE=={RESET_COLOR}", file=sys.stderr)
+    print(f" query:{query}", file=sys.stderr)
+    print(f" embedModel:{embedModel}", file=sys.stderr)
+    print(f" mainModel:{mainModel}", file=sys.stderr)
+    print(f" conversationID:{conversationID}", file=sys.stderr)
 
     # retreieve significant docs
     docs = retrieve(query, embedmodel=embedModel, table=get_table(tablename=TableNames.DOC_MODEL))
@@ -112,9 +124,9 @@ class RequestHandler(BaseHTTPRequestHandler):
     fullResponse = ""
     for chunk in stream:
       if chunk["message"]:
-        print(NEON_GREEN + chunk['message']['content'] + RESET_COLOR, end='', flush=True)
+        print(NEON_GREEN + chunk['message']['content'] + RESET_COLOR, end='', flush=True, file=sys.stderr)
         fullResponse = fullResponse + chunk['message']['content']
-    print("\n\n")
+    print(("\n\n"), file=sys.stderr)
 
     # save the conversation
     chat_messages.append({ "role":"assistant", "content":fullResponse})
@@ -136,7 +148,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 def run(server_class=HTTPServer, handler_class=RequestHandler, port=8824):
   server_address = ('', port)
   httpd = server_class(server_address, handler_class)
-  print(f'===Starting httpd server on port {port}===')
+  print(f'===Starting httpd server on port {port}===', file=sys.stderr)
   httpd.serve_forever()
 
 if __name__ == '__main__':

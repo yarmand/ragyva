@@ -24,7 +24,7 @@ def import_file(path, root_path, model, table):
   print(f"with {nb_chunks} chunks ", file=sys.stderr)
   doc_tags_names = []
   doc_tags_names += extract_tags_from_filename(path)
-  doc_tags_names += extract_tags_from_header(path)
+  #doc_tags_names += extract_tags_from_header(path)
 
   for index, document in enumerate(documents):
     chunk = document.page_content
@@ -44,8 +44,8 @@ def import_file(path, root_path, model, table):
       chunk_index=index,
       nb_chunks=nb_chunks,
       links=[],
-      doc_tags=doc_tags,
-      chunk_tags=chunk_tags,
+      doc_tags=doc_tags_names,
+      chunk_tags=chunk_tags_names,
     )
     table.add([data])
 
@@ -61,12 +61,12 @@ def import_file(path, root_path, model, table):
   print(f"Chunk Index: {data.chunk_index}", file=sys.stderr)
   print(f"Number of Chunks: {data.nb_chunks}", file=sys.stderr)
   print(f"Links: {data.links}", file=sys.stderr)
-  print(f"Document Tags: {data.doc_tags}", file=sys.stderr)
-  print(f"Chunk Tags: {data.chunk_tags}", file=sys.stderr)
+  #print(f"Document Tags: {data.doc_tags_names}", file=sys.stderr)
+  #print(f"Chunk Tags: {data.chunk_tags_names}", file=sys.stderr)
 
   # timing log
   import_time=(time.time() - starttime)
-  print(" < %s seconds >" % import_time)
+  print((" < %s seconds >" % import_time), file=sys.stderr)
 
   return {
     "message": "import OK",
@@ -90,5 +90,5 @@ def skip_this_file(path, relpath, table):
         "file": relpath,
       }
     else:
-      print(f"File has changed, deleting existing DB entries for: {relpath}")
+      print((f"File has changed, deleting existing DB entries for: {relpath}"), file=sys.stderr)
       table.delete(f"source_relative_path = '{relpath}'")

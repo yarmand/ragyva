@@ -7,7 +7,7 @@ from datetime import datetime
 from general.config import getconfig
 from retrieval.retrieve import retrieve
 from general.db import get_table
-
+import sys
 
 # ANSI escape codes for colors
 PINK = '\033[95m'
@@ -49,7 +49,7 @@ while True:
   conversation_history.append({"role": "user", "content": modelquery})
 
 
-  print(NEON_GREEN + "\nResponse:\n" + RESET_COLOR)
+  print(NEON_GREEN + "\nResponse:\n" + RESET_COLOR, file=sys.stderr)
 
   messages = [
     {"role": "system", "content": system_message},
@@ -63,6 +63,6 @@ while True:
     if chunk["message"]:
       print(NEON_GREEN + chunk['message']['content'] + RESET_COLOR, end='', flush=True)
       fullResponse = fullResponse + chunk['message']['content']
-  print("\n\n")
+  print("\n\n", file=sys.stderr)
 
   conversation_history.append({"role": "assistant", "content": fullResponse})
