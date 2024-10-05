@@ -154,7 +154,13 @@ def run(server_class=HTTPServer, handler_class=RequestHandler, port=8824):
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--config', default=DEFAULT_CONFIG_FILE, help='config file to use')
+  parser.add_argument('--port', help='port of the server')
   args = parser.parse_args()
   config_file = args.config
   set_config_file(config_file)
-  run()
+  port = args.port
+  if port:
+    port = int(port)
+  else:
+    port = int(getconfig("main", "port"))
+  run(port=port)
