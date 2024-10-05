@@ -1,4 +1,5 @@
 import configparser
+import sys
 
 DEFAULT_CONFIG_FILE = 'config.ini'
 
@@ -6,6 +7,8 @@ config_file = DEFAULT_CONFIG_FILE
 
 def set_config_file(file):
   global config_file
+  global config
+  config = False
   config_file = file
 
 def set_default_config():
