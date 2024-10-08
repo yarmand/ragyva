@@ -57,6 +57,12 @@ find ./docs -name '*.md' | import.py
 chat.py
 ```
 
+# Architecture and design
+The ingestion extract tags, links and entities to inform the creation of graphRAG communities. (see [graphRAG paper](https://arxiv.org/abs/2404.16130))
+
+![ingestion design](Ragyva-architecture-ingestion.png)
+(diagram [source on canva](https://www.canva.com/design/DAGS8zlwqcU/lYF-m0gO87c1ErFMvkGvHA/edit?utm_content=DAGS8zlwqcU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton))
+
 # TODO
 
 - implement communities from graphRAG: <https://github.com/microsoft/graphrag>
