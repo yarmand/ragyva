@@ -11,6 +11,7 @@ import ollama
 import argparse
 import time
 import sys
+import tempfile
 
 
 # ANSI escape codes for colors
@@ -25,6 +26,8 @@ class RequestHandler(BaseHTTPRequestHandler):
   def do_POST(self):
     if self.path == '/import':
       self.handle_import()
+    if self.path == '/import_stream':
+      self.handle_import_stream()
     elif self.path == '/retrieve':
       self.handle_retrieve()
     else:
@@ -46,6 +49,63 @@ class RequestHandler(BaseHTTPRequestHandler):
       self.end_headers()
       self.wfile.write(b'{"error": "Path parameter is missing"}')
       return
+
+    # TODO: should be optional payload params
+    embedmodel = getconfig("main", "embedmodel")
+
+    print(f"{YELLOW}==IMPORT=={RESET_COLOR}", file=sys.stderr)
+
+    result = import_file(
+      path=path, 
+      root_path=doc_root, 
+      model=embedmodel, 
+      table=get_or_create_table(table_name=TableNames.DOC_MODEL, delete_table=False)
+    )
+
+
+    self.send_response(200)
+    self.send_header('Content-Type', 'application/json')
+    self.end_headers()
+    response = result
+    self.wfile.write(json.dumps(response).encode('utf-8'))
+
+def handle_stream(self):
+    content_length = int(self.headers['Content-Length'])
+    post_data = self.rfile.read(content_length)
+    params = json.loads(post_data)
+    path = params.get('path')
+    doc_root = params.get('doc_root')
+    mtime = params.get('mtime')
+
+
+    if not path:
+      self.send_response(400)
+      self.end_headers()
+      self.wfile.write(b'{"error": "Path parameter is missing"}')
+      return
+
+
+    if not mtime:
+      self.send_response(400)
+      self.end_headers()
+      self.wfile.write(b'{"error": "mtime parameter is missing. It is the latest modification time for the file"}')
+      return
+
+    # Generate file content from HTTP stream
+    file_content = b""
+    while True:
+      chunk = self.rfile.read(1024)
+      if not chunk:
+        break
+      file_content += chunk
+
+    # Save the file content to a temporary file
+    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+      temp_file.write(file_content)
+      temp_file_path = temp_file.name
+
+    # Update path to the temporary file
+    path = temp_file_path
 
     # TODO: should be optional payload params
     embedmodel = getconfig("main", "embedmodel")
