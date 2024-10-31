@@ -1,6 +1,6 @@
 import lancedb
 import os
-from general.models import DocModel, TableNames
+import general.models as models
 from general.config import getconfig
 import sys
 

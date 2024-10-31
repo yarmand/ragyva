@@ -4,7 +4,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from retrieval.retrieve import retrieve
 from general.db import get_table, get_or_create_table
-from general.models import Chat, TableNames
+import general.models as models
 from ingestion.markdown_import import import_file
 from general.config import getconfig, set_config_file, DEFAULT_CONFIG_FILE
 import ollama
@@ -59,7 +59,7 @@ class RequestHandler(BaseHTTPRequestHandler):
       path=path, 
       root_path=doc_root, 
       model=embedmodel, 
-      table=get_or_create_table(table_name=TableNames.CHUNK_MODEL, delete_table=False)
+      table=get_or_create_table(table_name=models.TABLE_TEXT_UNITS, delete_table=False)
     )
 
 
@@ -69,7 +69,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     response = result
     self.wfile.write(json.dumps(response).encode('utf-8'))
 
-def handle_stream(self):
+  def handle_stream(self):
     content_length = int(self.headers['Content-Length'])
     post_data = self.rfile.read(content_length)
     params = json.loads(post_data)
@@ -116,7 +116,7 @@ def handle_stream(self):
       path=path, 
       root_path=doc_root, 
       model=embedmodel, 
-      table=get_or_create_table(table_name=TableNames.CHUNK_MODEL, delete_table=False)
+      table=get_or_create_table(table_name=models.TABLE_TEXT_UNITS, delete_table=False)
     )
 
 
@@ -160,10 +160,10 @@ def handle_stream(self):
     print(f" conversationID:{conversationID}", file=sys.stderr)
 
     # retreieve significant docs
-    docs = retrieve(query, embedmodel=embedModel, table=get_table(tablename=TableNames.CHUNK_MODEL))
+    docs = retrieve(query, embedmodel=embedModel, table=get_table(tablename=models.TABLE_TEXT_UNITS))
     # get the conversation
     system_message = getconfig("chat", "prompt_system")
-    chats_table = get_or_create_table(table_name=TableNames.CHAT_MODEL, schema=Chat.to_arrow_schema())
+    chats_table = get_or_create_table(table_name=models.TABLE_CHATS, schema=Chat.to_arrow_schema())
     chats = chats_table.search().where(f"id = '{conversationID}'", prefilter=True).to_pandas()
     chat_messages = []
     if len(chats['id']) == 0:

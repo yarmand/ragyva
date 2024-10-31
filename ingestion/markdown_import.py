@@ -1,6 +1,6 @@
 from langchain.text_splitter import MarkdownTextSplitter
 import ollama, time, os
-from general.models import ChunkModel, DocumentModel, TagModel
+import general.models as models
 from ingestion.tags import extract_tags_from_filename, extract_tags_from_text
 import sys
 
@@ -35,7 +35,7 @@ def import_file(path, root_path, model, table, content_path=None, modif_time=Non
     embed = ollama.embeddings(model=model, prompt=chunk)['embedding']
     print(".", end="", flush=True, file=sys.stderr)
 
-    document = DocumentModel(
+    document = models.Document(
       id=f"{relpath}",
       source_root=root_path,
       source_relative_path=relpath,
@@ -44,7 +44,7 @@ def import_file(path, root_path, model, table, content_path=None, modif_time=Non
       nb_chunks=nb_chunks,
     )
 
-    data = ChunkModel(
+    data = models.TextUnit(
       id=f"{relpath}_{index}",
       document_id=document_data.id,
       text=chunk,
