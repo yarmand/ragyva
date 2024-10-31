@@ -5,18 +5,20 @@ from ingestion.tags import extract_tags_from_filename, extract_tags_from_text
 import sys
 
 
-def import_file(path, root_path, model, table):
+def import_file(path, root_path, model, table, content_path=None, modif_time=None):
+  if content_path == None:
+    content_path = path
   text = ""
   relpath = os.path.relpath(path, root_path)
 
-  if skip_this_file(path=path, relpath=relpath, table=table):
+  if skip_this_file(path=path, relpath=relpath, modif_time=modif_time, table=table):
     return
 
   ###
   # ingest file
   ###
   starttime = time.time()
-  with open(path, 'rb') as f:
+  with open(content_path, 'rb') as f:
     text = f.read().decode('utf-8')
   splitter = MarkdownTextSplitter(chunk_size = 500, chunk_overlap=0)
   documents = splitter.create_documents([text])
@@ -79,7 +81,7 @@ def import_file(path, root_path, model, table):
     "import_time": import_time,
   }
 
-def skip_this_file(path, relpath, table):
+def skip_this_file(path, relpath, table, modif_time=None):
   # # retreive existing document
   existing_doc = False
   docs = table.search().where(f"source_relative_path =  '{relpath}'", prefilter=True).to_pandas()
@@ -87,7 +89,9 @@ def skip_this_file(path, relpath, table):
     existing_doc = docs["id"][0]
   # skip if document did not change
   if existing_doc:
-    last_change = os.path.getmtime(path)
+    last_change = modif_time
+    if modif_time == None:
+      last_change = os.path.getmtime(path)
     if last_change < docs["import_time"][0]:
       print("no change, skipping", file=sys.stderr)
       return {
