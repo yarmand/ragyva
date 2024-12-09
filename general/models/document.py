@@ -1,11 +1,10 @@
 from .named import Named
-from lancedb.pydantic import Any
 
 TABLE_DOCUMENTS = "documents"
 
 class Document(Named):
   """A protocol for a document in the system."""
-  
+
   fullpath: str
   """The file of hte document if the document comes from a file"""
   root: str

@@ -9,6 +9,9 @@ class TextUnit(Identified):
   text: str
   """The text of the unit."""
 
+  chunk_index: int
+  """position of the iunit in a larger text"""
+
   text_embedding: list[float] = []
   """The text embedding for the text unit (optional)."""
 

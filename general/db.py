@@ -10,7 +10,7 @@ def get_db():
 def get_table(db=get_db(), tablename=models.TABLE_TEXT_UNITS):
   return db.open_table(tablename)
 
-def get_or_create_table(table_name, delete_table=False, db=get_db(), schema=models.TextUnit.to_arrow_schema()):
+def get_or_create_table(table_name, schema, delete_table=False, db=get_db()):
   # initialize DB table
   if delete_table:
     db.drop_table(name=table_name, ignore_missing=True)
