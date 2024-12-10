@@ -7,6 +7,7 @@ import sys
 import argparse
 from general.db import get_or_create_table
 import general.models as models
+from general.logger import logger
 
 def import_a_file(doc_root, filename):
   embedmodel = getconfig("main", "embedmodel")
@@ -33,11 +34,14 @@ if __name__ == "__main__":
   parser.add_argument('--config', default=DEFAULT_CONFIG_FILE, help='config file to use')
   parser.add_argument('--file', help='import a single file. This is the relative path to doc_root to the file to import. If this parameter is not provided, the script will read a list of files to import from stdin')
   parser.add_argument('--doc-root', default=getconfig("ingestion", "notes_root_path") ,help='Folder path where docs are.')
+  parser.add_argument('--log-level', default="INFO" ,help='Set debug level. Default is INFO. Possible values are [ ERROR, WARNING, INFO, DEBUG ]')
   args = parser.parse_args()
   config_file = args.config
   set_config_file(config_file)
   filename = args.file
   doc_root = args.doc_root
+  verbosity = args.log_level
+  logger.set_level(verbosity)
   if filename:
     print(f"Import a single file: root:{doc_root}, file:{filename}", file=sys.stderr)
     import_a_file(doc_root, filename)

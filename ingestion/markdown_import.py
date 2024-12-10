@@ -4,6 +4,7 @@ from general.db import get_or_create_table
 import general.models as models
 from ingestion.tags import extract_tags_from_filename, extract_tags_from_text
 import sys
+from general.logger import logger
 
 
 def import_file(path, root_path, model, content_path=None, modif_time=None):
@@ -12,7 +13,7 @@ def import_file(path, root_path, model, content_path=None, modif_time=None):
     content_path = path
   text = ""
   relpath = os.path.relpath(path, root_path)
-
+  logger.info(f"Ingesting {path}")
   if skip_this_file(path=path, relpath=relpath, modif_time=modif_time, table=doc_table):
     return
 
@@ -25,7 +26,7 @@ def import_file(path, root_path, model, content_path=None, modif_time=None):
   splitter = MarkdownTextSplitter(chunk_size = 500, chunk_overlap=0)
   chunks = splitter.create_documents([text])
   nb_chunks = len(chunks)
-  print(f"with {nb_chunks} chunks ", file=sys.stderr)
+  logger.info(f" with {nb_chunks} chunks ")
   doc_tags_names = []
   doc_tags_names += extract_tags_from_filename(path)
   #doc_tags_names += extract_tags_from_header(path)
@@ -45,9 +46,9 @@ def import_file(path, root_path, model, content_path=None, modif_time=None):
   for index, c in enumerate(chunks):
     chunk = c.page_content
     chunk_tags_names = extract_tags_from_text(chunk)
-    # print(f"{relpath}[{index}]: {chunk}", file=sys.stderr)
+    logger.info(f"{relpath}[{index}/{nb_chunks}]")
+    logger.debug(f"  text:\n {chunk}")
     embed = ollama.embeddings(model=model, prompt=chunk)['embedding']
-    print(".", end="", flush=True, file=sys.stderr)
 
     text_unit = models.TextUnit(
       id=f"{relpath}_{index}",
@@ -62,24 +63,21 @@ def import_file(path, root_path, model, content_path=None, modif_time=None):
     text_units_table.add([text_unit])
 
     # Print text_unit nicely to stderr
-    print("---", file=sys.stderr)
-    print("\nDocument text_unit:", file=sys.stderr)
-    print(f"ID: {text_unit.id}", file=sys.stderr)
-    print(f"Text: {text_unit.text[:100]}...", file=sys.stderr)  # Print first 100 characters of the text
-    print(f"Vector: {text_unit.text_embedding[:5]}...", file=sys.stderr)  # Print first 5 elements of the vector
-    print(f"Source Root: {document.root}", file=sys.stderr)
-    print(f"Source Relative Path: {document.relative_path}", file=sys.stderr)
-    print(f"Source Full Path: {document.fullpath}", file=sys.stderr)
-    print(f"Import Time: {document.import_time}", file=sys.stderr)
-    print(f"Chunk Index: {text_unit.chunk_index}", file=sys.stderr)
-    print(f"Number of Chunks: {len(document.text_unit_ids)}", file=sys.stderr)
-    # print(f"Links: {text_unit.links}", file=sys.stderr)
-    #print(f"Document Tags: {data.doc_tags_names}", file=sys.stderr)
-    #print(f"Chunk Tags: {data.chunk_tags_names}", file=sys.stderr)
+    logger.debug("---")
+    logger.debug("\nDocument text_unit:")
+    logger.debug(f"ID: {text_unit.id}")
+    logger.debug(f"Text: {text_unit.text[:100]}...")
+    logger.debug(f"Vector: {text_unit.text_embedding[:5]}...")
+    logger.debug(f"Source Root: {document.root}")
+    logger.debug(f"Source Relative Path: {document.relative_path}")
+    logger.debug(f"Source Full Path: {document.fullpath}")
+    logger.debug(f"Import Time: {document.import_time}")
+    logger.debug(f"Chunk Index: {text_unit.chunk_index}")
+    logger.debug(f"Number of Chunks: {len(document.text_unit_ids)}")
 
   # timing log
   import_time=(time.time() - starttime)
-  print((" < %s seconds >" % import_time), file=sys.stderr)
+  logger.info((f" done in: {import_time} seconds"))
 
   return {
     "message": "import OK",
@@ -99,11 +97,11 @@ def skip_this_file(path, relpath, table, modif_time=None):
     if modif_time == None:
       last_change = os.path.getmtime(path)
     if last_change < docs["import_time"][0]:
-      print("no change, skipping", file=sys.stderr)
+      logger.info("no change, skipping")
       return {
         "message": "no change, skipping",
         "file": relpath,
       }
     else:
-      print((f"File has changed, deleting existing DB entries for: {relpath}"), file=sys.stderr)
+      logger.info(f"File has changed, deleting existing DB entries for: {relpath}")
       table.delete(f"relative_path = '{relpath}'")
